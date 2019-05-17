@@ -46,6 +46,8 @@ export default class MapDisplay extends Component {
 
   render() {
 
+      if (app.getCountyGeojson) {
+
             return (
                 <div className="csftool-display-map">
                   <Loader message={spinner} show={app.getLoader} priority={10} backgroundStyle={{backgroundColor: null}} hideContentOnLoad={false}>
@@ -78,6 +80,11 @@ export default class MapDisplay extends Component {
                   </Loader>
                 </div>
             )
+
+      } else {
+        return (false)
+      }
+
   }
 
 }

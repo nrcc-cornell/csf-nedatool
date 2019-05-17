@@ -42,7 +42,8 @@ export class AppStore {
     @observable monthEnd;
     @observable selectedCountyData = [];
     @observable countyData = {};
-    @observable countyGeojson = {};
+    //@observable countyGeojson = {};
+    @observable countyGeojson = null;
     @observable loaderLastDate=false;
     @observable loaderCountyData=false;
     @observable loaderCountyGeojson=false;
