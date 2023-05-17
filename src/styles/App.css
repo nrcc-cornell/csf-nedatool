@@ -21,15 +21,13 @@
 
     #csftool-content{
         height: 466px;
-        width: 908px;
+        width: 918px;
     }
 
     .csftool-input{
-        //display: inline-block;
         display: flex;
         flex-direction: column;
         float:left;
-        //height: 460px;
         height: 466px;
         width: 180px;
         margin: 0 0 0 0;
@@ -42,19 +40,13 @@
 
     .csftool-display{
         float:left;
-        /*height: 435px;*/
-        /*width: 699px;*/
-        //height: 460px;
         height: 466px;
-        //width: 724px;
         width: 728px;
         margin: 0 0 0 0;
-        /*border: none;*/
         border-top: 3px solid #00bb00;
         border-right: 3px solid #00bb00;
         border-bottom: 3px solid #00bb00;
         text-align: center;
-        display: inline-block;
     }
 
     .csftool-display-map{
@@ -64,7 +56,6 @@
         margin: 0 0 0 0;
         border: none;
         text-align: center;
-        display: inline-block;
     }
 
     .csftool-display-chart{
@@ -74,7 +65,6 @@
         margin: 0 0 0 0;
         border: none;
         text-align: center;
-        display: inline-block;
     }
 
     .csftool-display-message{
@@ -110,7 +100,6 @@
 .loader {
   margin: 200px auto;
   font-size: 18px;
-  //font-size: 30px;
   width: 1em;
   height: 1em;
   border-radius: 50%;

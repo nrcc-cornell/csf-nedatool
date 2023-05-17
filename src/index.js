@@ -19,14 +19,9 @@ import ReactDOM from 'react-dom';
 //Components
 import App from './components/App';
 
-//Styles
-import './styles/index.css';
-
 //Mobx
 import store from "./stores";
 import { Provider } from "mobx-react";
-
-//import registerServiceWorker from "./registerServiceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -34,4 +29,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('csftool-content')
 );
-//registerServiceWorker();
