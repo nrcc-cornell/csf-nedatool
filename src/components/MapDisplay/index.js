@@ -38,7 +38,6 @@ export default class MapDisplay extends Component {
   }
 
   handleImageLoad = () => {
-    console.log('LOADED IMAGE');
     if (app.getLoaderImageOverlay === true) {
         app.updateLoaderImageOverlay(false);
     }
@@ -59,7 +58,7 @@ export default class MapDisplay extends Component {
                         attributionControl={false}
                     >
                         <ImageOverlay
-                            url={'http://tools.climatesmartfarming.org/nedatool/static/pdsi_Amon_NRCC-R1_PM-4km_1950-2016_'+app.yearMonthText+'.png'}
+                            url={'http://127.0.0.1:8787/fetch-map/?name=pdsi_Amon_NRCC-R1_PM-4km_1950-2016_'+app.yearMonthText+'.png'}
                             opacity={1.0}
                             bounds={[[35.40,-87.50],[49.25,-62.30]]}
                             onLoad={this.handleImageLoad}

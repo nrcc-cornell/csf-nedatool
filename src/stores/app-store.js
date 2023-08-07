@@ -16,7 +16,7 @@
 import React from 'react';
 import { observable, computed, action } from 'mobx';
 import jsonp from 'jsonp';
- 
+
 export class RefStore {
     // Data Sources and References -------------------------------------------------------
     // For Components: InfoButton & InfoWindow -------------------------------------------
@@ -135,10 +135,6 @@ export class AppStore {
 
     @computed get getLoader() {
             let res = null
-            console.log(this.getLoaderCountyData);
-            console.log(this.getLoaderCountyGeojson);
-            console.log(this.getLoaderLastDate);
-            console.log(this.getLoaderImageOverlay);
             if (this.getLoaderCountyData || this.getLoaderCountyGeojson || this.getLoaderLastDate || this.getLoaderImageOverlay) {
                 res = true
             } else {
@@ -341,73 +337,64 @@ export class AppStore {
         }
 
     @action downloadFinalYearMonth = () => {
-            console.log('INSIDE downloadFinalYearMonth Beginning');
-            console.log(this.getLoaderLastDate);
             if (this.getLoaderLastDate === false) {
                 this.updateLoaderLastDate(true);
             }
-            const url = 'http://tools.climatesmartfarming.org/nedatool/last-date'
-            jsonp(url, null, (err,data) => {
-                if (err) {
-                    console.log('INSIDE downloadFinalYearMonth ERROR');
-                    console.error(err.message);
-                    this.year = '2017';
-                    this.month = '06';
-                    this.yearEnd = '2017';
-                    this.monthEnd = '06';
+            const url = 'http://127.0.0.1:8787/fetch-last-date'
+            fetch(url)
+                .then((resp) => {
+                    if (resp.status === 200) {
+                        return resp.json();
+                    } else {
+                        console.error(resp.status);
+                        this.year = '2017';
+                        this.month = '06';
+                        this.yearEnd = '2017';
+                        this.monthEnd = '06';
+                        return
+                    }
+                })
+                .then((data) => {
+                    if (data) {
+                        let y = data['year'];
+                        let m = data['month'];
+                        this.yearEnd = y;
+                        this.monthEnd = m;
+                        this.updateLoaderLastDate(false);
+                        this.changeCalendarValues(y,m);
+                    }
                     return
-                } else {
-                    console.log(data);
-                    let y = data['finalYear'];
-                    let m = data['finalMonth'];
-                    this.yearEnd = y;
-                    this.monthEnd = m;
-                    this.updateLoaderLastDate(false);
-                    this.changeCalendarValues(y,m);
-                    return
-                }
-            });
+                });
         }
 
     @action downloadCountyGeojson = () => {
             if (this.getLoaderCountyGeojson === false) {
                 this.updateLoaderCountyGeojson(true);
             }
-            const url = 'http://tools.climatesmartfarming.org/nedatool/geojson'
-            jsonp(url, null, (err,data) => {
-                if (err) {
-                    console.error(err.message);
-                    this.updateCountyGeojson({"type":"FeatureCollection", "features":[]});
-                    return
-                } else {
+            
+            fetch('http://127.0.0.1:8787/fetch-county-geojson')
+                .then(res => res.json())
+                .then(data => {
                     this.updateCountyGeojson(data);
                     if (this.getLoaderCountyGeojson === true) {
                         this.updateLoaderCountyGeojson(false);
                     }
-                    return
-                }
-            });
+                });
         }
 
     @action downloadCountyData = () => {
             if (this.getLoaderCountyData === false) {
                 this.updateLoaderCountyData(true);
             }
-            const url = 'http://tools.climatesmartfarming.org/nedatool/ts-all'
-            jsonp(url, null, (err,data) => {
-                if (err) {
-                    console.error(err.message);
-                    this.updateCountyData({});
-                    return
-                } else {
-                    const d = data['data']
-                    this.updateCountyData(d);
+
+            fetch('http://127.0.0.1:8787/fetch-data')
+                .then(res => res.json())
+                .then(data => {
+                    this.updateCountyData(data);
                     if (this.getLoaderCountyData === true) {
                         this.updateLoaderCountyData(false);
                     }
-                    return
-                }
-            });
+                });
         }
 
     constructor() {
