@@ -340,7 +340,7 @@ export class AppStore {
             if (this.getLoaderLastDate === false) {
                 this.updateLoaderLastDate(true);
             }
-            const url = 'http://127.0.0.1:8787/fetch-last-date'
+            const url = 'https://nedatool-worker.benlinux915.workers.dev/fetch-last-date'
             fetch(url)
                 .then((resp) => {
                     if (resp.status === 200) {
@@ -372,7 +372,7 @@ export class AppStore {
                 this.updateLoaderCountyGeojson(true);
             }
             
-            fetch('http://127.0.0.1:8787/fetch-county-geojson')
+            fetch('https://nedatool-worker.benlinux915.workers.dev/fetch-county-geojson')
                 .then(res => res.json())
                 .then(data => {
                     this.updateCountyGeojson(data);
@@ -387,7 +387,7 @@ export class AppStore {
                 this.updateLoaderCountyData(true);
             }
 
-            fetch('http://127.0.0.1:8787/fetch-data')
+            fetch('https://nedatool-worker.benlinux915.workers.dev/fetch-data')
                 .then(res => res.json())
                 .then(data => {
                     this.updateCountyData(data);
