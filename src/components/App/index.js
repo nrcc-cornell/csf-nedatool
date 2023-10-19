@@ -28,8 +28,8 @@ import '../../styles/App.css';
  
 @inject('store') @observer
 class App extends Component {
-
     render() {
+        console.log('App rendering');
 
         return (
             <div className="App">

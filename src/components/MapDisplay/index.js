@@ -59,7 +59,7 @@ export default class MapDisplay extends Component {
                         attributionControl={false}
                     >
                         <ImageOverlay
-                            url={'http://tools.climatesmartfarming.org/nedatool/static/pdsi_Amon_NRCC-R1_PM-4km_1950-2016_'+app.yearMonthText+'.png'}
+                            url={'https://tools.climatesmartfarming.org/nedatool/static/pdsi_Amon_NRCC-R1_PM-4km_1950-2016_'+app.yearMonthText+'.png'}
                             opacity={1.0}
                             bounds={[[35.40,-87.50],[49.25,-62.30]]}
                             onLoad={this.handleImageLoad}

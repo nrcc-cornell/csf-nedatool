@@ -346,7 +346,7 @@ export class AppStore {
             if (this.getLoaderLastDate === false) {
                 this.updateLoaderLastDate(true);
             }
-            const url = 'http://tools.climatesmartfarming.org/nedatool/last-date'
+            const url = 'https://tools.climatesmartfarming.org/nedatool/last-date'
             console.log('calling: ', url);
             jsonp(url, null, (err,data) => {
                 if (err) {
@@ -374,7 +374,7 @@ export class AppStore {
             if (this.getLoaderCountyGeojson === false) {
                 this.updateLoaderCountyGeojson(true);
             }
-            const url = 'http://tools.climatesmartfarming.org/nedatool/geojson'
+            const url = 'https://tools.climatesmartfarming.org/nedatool/geojson'
             jsonp(url, null, (err,data) => {
                 if (err) {
                     console.error(err.message);
@@ -394,7 +394,7 @@ export class AppStore {
             if (this.getLoaderCountyData === false) {
                 this.updateLoaderCountyData(true);
             }
-            const url = 'http://tools.climatesmartfarming.org/nedatool/ts-all'
+            const url = 'https://tools.climatesmartfarming.org/nedatool/ts-all'
             jsonp(url, null, (err,data) => {
                 if (err) {
                     console.error(err.message);
