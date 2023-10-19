@@ -347,6 +347,7 @@ export class AppStore {
                 this.updateLoaderLastDate(true);
             }
             const url = 'http://tools.climatesmartfarming.org/nedatool/last-date'
+            console.log('calling: ', url);
             jsonp(url, null, (err,data) => {
                 if (err) {
                     console.log('INSIDE downloadFinalYearMonth ERROR');
